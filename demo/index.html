@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live demo of quantum-spin-engine: a driven qubit with relaxation and a Stern–Gerlach magnet, computed in the browser and checked against exact laws.">
+<title>quantum-spin-engine — live demo</title>
+<link rel="stylesheet" href="./demo.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <p class="kicker">quantum-spin-engine</p>
+    <h1>Spin-½, qubits and Stern–Gerlach, solved in your browser</h1>
+    <p class="lead">Nothing here is pre-recorded. The state is propagated on every frame and each number on the right is compared with an exact law. The sphere is a map of states, not an object that spins.</p>
+  </div>
+  <nav><a href="https://github.com/ecomyseo/quantum-spin-engine">Source on GitHub ↗</a><a href="https://fundamental.gmartos.es/escenarios.html#familia-informacion-cuantica">Used in Fundamental Universe ↗</a></nav>
+</header>
+<main class="layout">
+  <section class="panel">
+    <div class="modes" role="group" aria-label="Experiment">
+      <button type="button" id="mode-qubit" aria-pressed="true">Driven qubit</button>
+      <button type="button" id="mode-sg" aria-pressed="false">Stern–Gerlach</button>
+    </div>
+    <div id="stage" class="stage-host"></div>
+    <div class="transport">
+      <button type="button" id="play" class="primary" aria-pressed="false">Play</button>
+      <button type="button" id="reset">Reset</button>
+      <button type="button" id="detect">Detect 200</button>
+      <label class="strict"><input type="checkbox" id="strict"> Strict view (only what the state and the detector give)</label>
+    </div>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+  </section>
+  <aside class="panel side">
+    <h2>Parameters</h2>
+    <div id="controls"></div>
+    <label class="field">Seed <input type="text" id="seed" value="demo" maxlength="32" spellcheck="false"></label>
+    <h2>Live checks</h2>
+    <dl id="readouts" class="readouts"></dl>
+    <p class="note" id="explain"></p>
+  </aside>
+</main>
+<footer class="foot">MIT licence · Units with ħ = 1 · <a href="https://github.com/ecomyseo/quantum-spin-engine#readme">Documentation</a></footer>
+<noscript><p class="foot">This demo computes everything in the browser and needs JavaScript.</p></noscript>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

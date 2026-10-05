@@ -1,0 +1,53 @@
+{
+  "name": "quantum-spin-engine",
+  "version": "0.1.0",
+  "description": "Dependency-free spin-1/2 and qubit engine for the browser and Node: density matrices, exact Lindblad propagation, Kraus channels, quantum-jump trajectories, projective measurement, tomography, a Stern-Gerlach spinor solver and a Canvas 2D Bloch-sphere renderer.",
+  "type": "module",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./cmatrix": "./src/cmatrix.js",
+    "./density": "./src/density.js",
+    "./open-system": "./src/open-system.js",
+    "./measurement": "./src/measurement.js",
+    "./spinor": "./src/spinor.js",
+    "./bloch-renderer": "./src/bloch-renderer.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "examples",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "check": "node --check ./src/index.js && node --check ./src/bloch-renderer.js && node --check ./demo/main.js",
+    "test": "npm run check && node --test ./test/engine.mjs ./test/renderer.mjs ./test/demo.mjs",
+    "examples": "node ./examples/rabi.mjs && node ./examples/relaxation.mjs && node ./examples/stern-gerlach.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "quantum",
+    "qubit",
+    "spin",
+    "bloch-sphere",
+    "stern-gerlach",
+    "lindblad",
+    "density-matrix",
+    "simulation",
+    "physics",
+    "canvas"
+  ],
+  "author": "Gustavo Martos Ferri",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecomyseo/quantum-spin-engine.git"
+  },
+  "homepage": "https://fundamental.gmartos.es/quantum-spin-engine/demo/"
+}
