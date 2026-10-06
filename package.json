@@ -1,6 +1,6 @@
 {
   "name": "quantum-spin-engine",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Dependency-free spin-1/2 and qubit engine for the browser and Node: density matrices, exact Lindblad propagation, Kraus channels, quantum-jump trajectories, projective measurement, tomography, a Stern-Gerlach spinor solver and a Canvas 2D Bloch-sphere renderer.",
   "type": "module",
   "main": "./src/index.js",

@@ -94,9 +94,18 @@ export function createSpinRenderer(container, { documentRef = document, windowRe
   }
 
   function drawSphere(bloch, box, ratio, strict) {
-    const radius = Math.min(box.width, box.height) * 0.36;
+    // En pantallas estrechas el rótulo va en dos líneas para que no se corte.
+    const caption = box.width >= 300 * ratio ? t.caption : t.captionNarrow;
+    // El pie (módulo del vector y rótulo) ocupa una franja abajo y los rótulos de los polos sobresalen de
+    // la esfera. En un lienzo bajo —un teléfono tumbado— la esfera se encoge y se centra en el hueco que
+    // queda, para que el polo sur no se pise con el pie ni el polo norte se salga por arriba.
+    const footer = (33 + 12 * caption.length) * ratio;
+    const top = 9 * ratio;
+    const reach = 1.34 * project([0, 0, 1])[1];
+    const usable = box.height - footer - top;
+    const radius = Math.min(Math.min(box.width, box.height) * 0.36, usable / (2 * reach));
     const cx = box.x + box.width / 2;
-    const cy = box.y + box.height * 0.47;
+    const cy = box.y + Math.min(box.height * 0.47, top + usable / 2);
     const at = (point) => {
       const [right, up, toward] = project(point);
       return [cx + radius * right, cy - radius * up, toward];
@@ -181,8 +190,6 @@ export function createSpinRenderer(container, { documentRef = document, windowRe
     context.fillStyle = tip[2] >= 0 ? '#ffe1a6' : PALETTE.gold;
     context.fill();
     const length = Math.hypot(...bloch.vector);
-    // En pantallas estrechas el rótulo va en dos líneas para que no se corte.
-    const caption = box.width >= 300 * ratio ? t.caption : t.captionNarrow;
     text(`|⟨σ⟩| = ${number(Math.round(length * 1000) / 1000)}`, cx, box.y + box.height - (19 + 12 * caption.length) * ratio, { color: PALETTE.ink, size: 12, align: 'center', ratio, weight: 700 });
     caption.forEach((line, index) => text(line, cx, box.y + box.height - (12 * (caption.length - index) + 1) * ratio, { color: PALETTE.quiet, size: 10, align: 'center', ratio }));
   }
